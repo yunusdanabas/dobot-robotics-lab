@@ -1,0 +1,12 @@
+# Dobot simulation layer — PyBullet backend (URDF + physics)
+# Install with:  pip install -r simulation/requirements/requirements_pybullet.txt
+# Activate with: DOBOT_SIMULATION=1 DOBOT_SIM_BACKEND=pybullet python ...
+#
+# URDF assets are vendored under vendor/magician_ros2_urdf and
+# vendor/mg400_description. See simulation/README.md for setup.
+
+pybullet>=3.2          # URDF loader + JOINT_GEAR parallelogram constraint
+trimesh>=4.0           # STL/DAE → OBJ mesh preprocessing
+pycollada>=0.8         # trimesh dep for parsing DAE collada meshes
+xacro>=2.0             # one-time MG400 xacro -> URDF expansion
+numpy<2                # matches the package base environment

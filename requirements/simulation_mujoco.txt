@@ -1,0 +1,5 @@
+-r base.txt
+mujoco>=3.1
+trimesh>=4.0
+pycollada>=0.8
+xacro>=2.0

@@ -1,0 +1,38 @@
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+.pytest_cache/
+
+# Student/local outputs
+*.zip
+move/
+build/
+install/
+log/
+
+# Export/vendor hygiene
+vendor/**/.git/
+vendor/**/__pycache__/
+
+# LaTeX build artifacts (keep *.tex)
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.nav
+*.out
+*.run.xml
+*.snm
+*.synctex
+*.synctex.gz
+*.synctex(busy)
+*.toc
+*.vrb
+*.xdv
+indent.log

@@ -1,0 +1,11 @@
+# Dobot simulation layer — MuJoCo backend (URDF + constraint solver)
+# Install with:  pip install -r simulation/requirements/requirements_mujoco.txt
+# Activate with: DOBOT_SIMULATION=1 DOBOT_SIM_BACKEND=mujoco python ...
+#
+# Shares the vendored URDFs + mesh preprocessor with the PyBullet backend.
+
+mujoco>=3.1            # MuJoCo 3 Python bindings (URDF-extension block, viewer)
+trimesh>=4.0           # STL/DAE → OBJ mesh preprocessing (shared with PyBullet)
+pycollada>=0.8         # trimesh dep for parsing DAE collada meshes
+xacro>=2.0             # one-time MG400 xacro -> URDF expansion
+numpy<2                # matches the package base environment

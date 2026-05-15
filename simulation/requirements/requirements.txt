@@ -1,0 +1,9 @@
+# Dobot simulation layer - MuJoCo backend (default)
+# Install with:  pip install -r simulation/requirements/requirements.txt
+mujoco>=3.1
+trimesh>=4.0
+pycollada>=0.8
+xacro>=2.0
+numpy<2            # matches the package base environment
+pyserial>=3.5      # Magician helpers use serial.tools for port discovery
+pydobotplus>=0.1   # loaded only on real-hardware code paths

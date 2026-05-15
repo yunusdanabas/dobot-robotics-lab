@@ -1,0 +1,175 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  urlcolor=blue
+}
+
+\title{ME403 Student Simulation Pack Guide}
+\author{ME403 Introduction to Robotics}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Purpose}
+This document explains how to use the released \texttt{ME403\_LabFiles} package
+as a student. It clarifies what is included, what is intentionally excluded, and
+how simulation assets are prepared at runtime.
+
+\section{What Is Included}
+\begin{itemize}
+  \item Lab starter folders under \texttt{labs/}
+  \item Vendored SDK and robot description sources under \texttt{vendor/}
+  \item Full simulation runtime under \texttt{simulation/runtime/}
+  \item Optional simulation demos under \texttt{simulation/student/}
+  \item Optional robot setup scripts under \texttt{robots/}
+  \item Bootstrap and asset helpers under \texttt{scripts/}
+  \item Setup and troubleshooting docs under \texttt{docs/}
+\end{itemize}
+
+\section{What Is Not Included by Default}
+\begin{itemize}
+  \item Instructor/private solution material
+  \item Internal course publishing helpers
+  \item Build artifacts and temporary caches
+\end{itemize}
+
+\section{Quickstart}
+Run from package root:
+\begin{verbatim}
+cd ME403_LabFiles
+python3 -m pip install -r requirements/base.txt
+python3 scripts/bootstrap.py --simulation
+cd labs/lab01_fk
+python3 interface.py
+\end{verbatim}
+
+\section{Simulation Architecture (Student View)}
+\subsection*{Upstream Assets vs Runtime Assets}
+The \texttt{vendor/} folder stores upstream robot descriptions and SDK sources.
+When URDF backends run, \texttt{simulation/runtime/urdf\_loader.py} prepares
+runtime copies for simulator compatibility.
+
+\subsection*{Preparation and Cache Pipeline}
+The runtime preparation step can include:
+\begin{itemize}
+  \item Mesh format conversion for backend compatibility
+  \item URI/path rewriting so files resolve correctly
+  \item Simulator-specific adjustments and hidden parity chain injection
+  \item Cached output placement under \texttt{\$DOBOT\_SIM\_CACHE}
+\end{itemize}
+
+Default cache path is:
+\begin{verbatim}
+~/.cache/dobot_sim
+\end{verbatim}
+
+\section{Environment Variables}
+\begin{longtable}{|p{0.34\linewidth}|p{0.58\linewidth}|}
+\hline
+\textbf{Variable} & \textbf{Meaning} \\
+\hline
+\texttt{DOBOT\_SIMULATION} & Set to \texttt{1} to force simulation mode (default for labs). \\
+\hline
+\texttt{DOBOT\_SIM\_BACKEND} & Choose \texttt{mujoco} (default) or \texttt{pybullet}. \\
+\hline
+\texttt{DOBOT\_VIZ} & Set to \texttt{0} for headless mode (no GUI windows). \\
+\hline
+\texttt{DOBOT\_ROBOT\_TYPE} & Choose \texttt{magician} or \texttt{mg400}. \\
+\hline
+\texttt{DOBOT\_EE} & Magician TCP mode: \texttt{none} (default, bare flange),
+  \texttt{motor}, or \texttt{suction}. Controls which TCP offset the sim uses.
+  Must match the real robot's \texttt{set\_tool\_offset()} setting for FK parity. \\
+\hline
+\texttt{DOBOT\_SIM\_CACHE} & Override cache directory for prepared assets. \\
+\hline
+\texttt{DOBOT\_MAGICIAN\_URDF\_PATH} & Override Magician URDF source file/folder path. \\
+\hline
+\texttt{DOBOT\_MG400\_URDF\_PATH} & Override MG400 URDF source file/folder path. \\
+\hline
+\end{longtable}
+
+\section{Backend Choice}
+\begin{itemize}
+  \item Use \texttt{mujoco} for the default course simulation workflow.
+  \item Use \texttt{pybullet} when MuJoCo graphics/drivers are unavailable.
+  \item Use headless mode (\texttt{DOBOT\_VIZ=0}) for remote sessions.
+\end{itemize}
+
+\section{Troubleshooting Quick Chart}
+\begin{longtable}{|p{0.3\linewidth}|p{0.62\linewidth}|}
+\hline
+\textbf{Symptom} & \textbf{Action} \\
+\hline
+Missing URDF/meshes &
+Run \texttt{python3 scripts/fetch\_assets.py --all} from package root. \\
+\hline
+First run is very slow &
+Expected behavior: initial fetch + mesh prep + cache generation. \\
+\hline
+MG400 URDF generation error &
+Install \texttt{xacro}, then rerun MG400 asset fetch. \\
+\hline
+GUI or display issues &
+Try \texttt{DOBOT\_VIZ=0}; on Linux test \texttt{MUJOCO\_GL=egl}. \\
+\hline
+Stale cache behavior &
+Delete \texttt{\$DOBOT\_SIM\_CACHE} (or \texttt{\~/.cache/dobot\_sim}) and rerun. \\
+\hline
+\end{longtable}
+
+\section{Matching Sim to Real-Robot EE Mode (Magician)}
+
+The simulation TCP mode (\texttt{DOBOT\_EE}) and the real robot's stored
+offset must agree for FK/IK errors to reflect kinematics rather than an
+offset mismatch.
+
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Sim \texttt{DOBOT\_EE}} & \textbf{TCP offset (mm)} & \textbf{Real robot Python command} \\
+\hline
+\texttt{none} (default) & (0, 0, 0) & \texttt{set\_tool\_offset(bot, 0, 0, 0)} \\
+\hline
+\texttt{motor} & (60, 0, 0) & \texttt{set\_tool\_offset(bot, 60, 0, 0)} \\
+\hline
+\texttt{suction} & (60, 0, $-$70) & \texttt{set\_tool\_offset(bot, 60, 0, -70)} --- physical cup tip \\
+\hline
+\end{tabular}
+\end{center}
+
+\texttt{MAGICIAN\_TOOL\_OFFSETS} dict in \texttt{utils.py} provides shortcuts:
+\begin{verbatim}
+set_tool_offset(bot, *MAGICIAN_TOOL_OFFSETS["none"])    # FK labs default
+\end{verbatim}
+
+For MG400 labs, no TCP offset switching is needed --- the MG400 always uses
+its bare wrist reference point in ME403 labs.
+
+\section{Recommended Student Workflow}
+\begin{enumerate}
+  \item Start in simulation and validate your lab code.
+  \item Switch robot type/backend only when needed.
+  \item Move to hardware only after simulation results are stable.
+  \item For Magician: home once in DobotStudio (v1.9.4), then use
+        \texttt{set\_tool\_offset()} from Python to set the TCP mode for each session.
+  \item Verify \texttt{DOBOT\_EE} (sim) matches \texttt{get\_tool\_offset(bot)} (real)
+        before collecting FK/IK data.
+\end{enumerate}
+
+\section{Further Reading}
+\begin{itemize}
+  \item \texttt{README.md} (root quickstart)
+  \item \texttt{docs/simulation.md}
+  \item \texttt{docs/troubleshooting.md}
+\end{itemize}
+
+\end{document}

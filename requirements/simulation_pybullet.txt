@@ -1,0 +1,5 @@
+-r base.txt
+pybullet>=3.2
+trimesh>=4.0
+pycollada>=0.8
+xacro>=2.0

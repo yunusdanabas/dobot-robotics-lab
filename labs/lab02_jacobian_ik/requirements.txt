@@ -1,0 +1,8 @@
+# Lab 02 convenience install file.
+# From this folder, run: python -m pip install -r requirements.txt
+
+-r ../../requirements/base.txt
+-r ../../requirements/simulation_mujoco.txt
+-r ../../requirements/simulation_pybullet.txt
+-r ../../requirements/magician_hardware.txt
+-r ../../requirements/mg400_hardware.txt

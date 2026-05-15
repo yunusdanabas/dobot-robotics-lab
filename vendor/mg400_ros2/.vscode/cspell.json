@@ -1,0 +1,31 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": [
+    "backdrive",
+    "bringup",
+    "colcon",
+    "coveragepy",
+    "discnt",
+    "DISTRO",
+    "dobot",
+    "dpad",
+    "eigen",
+    "geochelone",
+    "Hawksbill",
+    "homotrans",
+    "m12watanabe1a",
+    "mkdir",
+    "modbus",
+    "movj",
+    "movl",
+    "nlohmann",
+    "pluginlib",
+    "rclcpp",
+    "rviz",
+    "urdf",
+    "vcstool",
+    "waitables",
+    "xacro"
+  ]
+}
