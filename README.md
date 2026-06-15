@@ -1,111 +1,182 @@
-# ME403 Lab Files
+# Dobot Robotics Lab
 
 Prepared for **ME403 Introduction to Robotics** by **Yunus Emre Danabas**.
 
-This package is the student-facing workspace for Dobot Magician and MG400 labs.
-Use this file as the canonical quickstart.
+This package is the student workspace for Dobot Magician and MG400 robotics
+exercises. It includes exercise starter files, robot helper APIs, simulation
+support, setup scripts, and troubleshooting notes.
 
-## Quickstart (Simulation First)
+Use this README as the main entry point. Start in simulation, test your code,
+then move to real hardware only when your simulation behavior is correct.
 
-Use `python3` on Linux/macOS if `python` is not available. On Windows, use
-`py -3` or the Python executable from your virtual environment.
-You need `git` installed with internet access for asset fetch during bootstrap.
+## Start Here
+
+Prerequisites:
+
+- Python 3.10 or newer.
+- `git` with internet access for fetching robot assets.
+- A terminal opened at the package root.
+
+Linux/macOS examples use `python3`. On Windows, use `py -3` or the Python from
+your virtual environment.
 
 ```bash
 cd dobot-robotics-lab
 python3 -m pip install -r requirements/base.txt
 python3 scripts/bootstrap.py --simulation
-cd labs/lab01_forward_kinematics
+```
+
+Then open the exercise folder assigned by your instructor:
+
+```bash
+cd labs/<exercise_folder>
 python3 interface.py
 ```
 
-Simulation is the default path. Use real robots only after your code behaves
-correctly in simulation.
+Most exercises use this pattern:
 
-Before any real Magician run, calibrate/home with DobotStudio (DOBOT Magician)
-v1.9.4, then disconnect it before starting Python.
-Only one controller process can own the robot at a time.
+- Read the exercise `README.md`.
+- Edit `myCode.py`.
+- Run `python3 interface.py`.
+- Keep the local `student_api.md` open while coding.
 
-Set the TCP offset to `(0, 0, 0)` for FK labs. Two ways:
-- **DobotStudio**: set end-effector type to `None`, advanced XYZ bias to `0,0,0`.
-- **Python** (after initial DobotStudio homing):
-  `U.set_tool_offset(bot, *U.MAGICIAN_TOOL_OFFSETS["none"])`
+## Choose Robot Or Backend
 
-See `docs/magician_setup.md` for the full end-effector mode reference.
+The exercise interfaces default to Magician simulation with MuJoCo.
 
-## What `bootstrap --simulation` Does
-
-- Installs simulation dependencies (`MuJoCo` and `PyBullet` profiles).
-- Downloads upstream robot description assets into `vendor/`.
-- Prepares you to run labs and simulation demos from this package root.
-
-Note: URDF backends use runtime-prepared/cached copies of the vendored URDFs.
-See `docs/simulation.md` for details on preprocessing and cache behavior.
-
-## Simulation Environment Quick Reference
-
-- `DOBOT_SIMULATION=1` enables simulation mode (default for labs).
-- `DOBOT_SIM_BACKEND=mujoco|pybullet` selects backend (`mujoco` default).
-- `DOBOT_VIZ=0` disables GUI windows (headless runs).
-- `DOBOT_ROBOT_TYPE=magician|mg400` selects robot family in lab interfaces.
-- `DOBOT_SIM_CACHE=/custom/path` overrides default cache (`~/.cache/dobot_sim`).
-- `DOBOT_SIM_RUNTIME=/path/to/simulation/runtime` overrides search for bundled simulation code (Lab 1 / Lab 2).
-- `DOBOT_MAGICIAN_URDF_PATH=/path/to/magician_none.urdf` overrides Magician
-  URDF directly; folder overrides should contain the three mode variants.
-- `DOBOT_MG400_URDF_PATH=/path/to/mg400.urdf` overrides MG400 URDF source
-  path (useful for custom/modified URDF workflows).
-
-## Common Commands
+Use MG400 simulation:
 
 ```bash
-# Optional: install everything (simulation + hardware profiles)
+DOBOT_ROBOT_TYPE=mg400 python3 interface.py
+```
+
+Use PyBullet instead of MuJoCo:
+
+```bash
+DOBOT_SIM_BACKEND=pybullet python3 interface.py
+```
+
+Run without GUI windows:
+
+```bash
+DOBOT_VIZ=0 python3 interface.py
+```
+
+Useful environment variables:
+
+| Variable | Purpose |
+|----------|---------|
+| `DOBOT_SIMULATION=1` | Use simulation mode. This is the default for exercises. |
+| `DOBOT_ROBOT_TYPE=magician|mg400` | Select the robot family. |
+| `DOBOT_SIM_BACKEND=mujoco|pybullet` | Select the simulator backend. |
+| `DOBOT_VIZ=0` | Disable visualization windows for headless runs. |
+| `DOBOT_SIM_CACHE=/path` | Override the simulation asset cache path. |
+| `DOBOT_SIM_RUNTIME=/path` | Override where exercise helpers find the bundled simulation runtime. |
+
+## Real Robot Use
+
+Use real hardware only after simulation works.
+
+Before a real Magician run:
+
+- Calibrate/home with DobotStudio for Dobot Magician.
+- Close DobotStudio before starting Python.
+- Make sure only one controller process owns the robot.
+- For forward-kinematics work, use TCP offset `(0, 0, 0)` unless instructed otherwise.
+
+Set Magician TCP offset to `(0, 0, 0)` in one of these ways:
+
+- DobotStudio: set end-effector type to `None`, then set advanced XYZ bias to `0,0,0`.
+- Python: after initial DobotStudio homing, run `U.set_tool_offset(bot, *U.MAGICIAN_TOOL_OFFSETS["none"])`.
+
+Hardware checks from the package root:
+
+```bash
+python3 scripts/check_magician.py
+python3 scripts/check_mg400.py --robot 1
+```
+
+Run an exercise on hardware from inside the exercise folder:
+
+```bash
+DOBOT_SIMULATION=0 DOBOT_ROBOT_TYPE=magician python3 interface.py
+DOBOT_SIMULATION=0 DOBOT_ROBOT_TYPE=mg400 DOBOT_MG400_ROBOT=1 python3 interface.py
+```
+
+See `docs/magician_setup.md` and `docs/mg400_setup.md` before using real robots.
+
+## Useful Commands
+
+From the package root:
+
+```bash
+# Install all supported profiles, including simulation and hardware helpers.
 python3 scripts/bootstrap.py --full
 
-# Re-fetch upstream assets into vendor/
+# Re-fetch upstream robot assets into vendor/.
 python3 scripts/fetch_assets.py --all
 
-# MG400 network check
-python3 scripts/check_mg400.py --robot 1
+# Check the local Python environment.
+python3 scripts/check_install.py
 
-# Magician USB check
+# Check a Magician USB connection.
 python3 scripts/check_magician.py
+
+# Check an MG400 network connection.
+python3 scripts/check_mg400.py --robot 1
+```
+
+## What Bootstrap Does
+
+`python3 scripts/bootstrap.py --simulation` prepares the simulation workflow:
+
+- Installs simulation dependencies for MuJoCo and PyBullet.
+- Downloads upstream robot description assets into `vendor/`.
+- Leaves runtime-prepared URDF files in a cache on first simulation use.
+
+If simulation assets are missing or stale, rerun:
+
+```bash
+python3 scripts/fetch_assets.py --all
 ```
 
 ## Folder Map
 
-| Folder | What it contains |
-|--------|------------------|
-| `labs/` | Lab starter files (`myCode.py`, `interface.py`, `utils.py`). |
-| `simulation/` | Runtime, demos, and tests for simulation workflows. |
-| `robots/` | Optional hardware-focused scripts/helpers. |
-| `tools/` | Optional debugging and Windows support utilities. |
-| `requirements/` | Install profiles for simulation and hardware tracks. |
-| `scripts/` | Bootstrap/install and asset fetch helpers. |
-| `vendor/` | Upstream third-party SDK and description checkouts. |
-| `docs/` | Setup, simulation notes, and troubleshooting docs. |
+| Folder | Contents |
+|--------|----------|
+| `labs/` | Exercise starter folders with `interface.py`, `myCode.py`, `utils.py`, and local API notes. |
+| `simulation/` | Simulation runtime, student demos, and backend tests. |
+| `robots/` | Optional hardware-focused examples and helper scripts. |
+| `requirements/` | Install profiles for base, simulation, and hardware dependencies. |
+| `scripts/` | Bootstrap, install checks, robot checks, and asset fetching. |
+| `tools/` | Debugging utilities and Windows support helpers. |
+| `vendor/` | Upstream SDK and robot description assets. |
+| `docs/` | Setup, simulation, hardware, API, and troubleshooting guides. |
 
-## Additional Docs
+## More Documentation
 
-- `docs/setup.md` for a short setup checklist.
-- `docs/student_api.md` for the full API across labs. Each `labs/*/` folder also has its own shorter `student_api.md`.
-- `docs/simulation.md` for backend behavior, URDF preprocessing, and cache flow.
-- `docs/magician_setup.md` and `docs/mg400_setup.md` for hardware workflows.
-- `docs/troubleshooting.md` for common setup/runtime failures.
-- `docs/student_simulation_pack_guide.pdf` for the release explainer handout.
-- `docs/magician_calibration_and_setup_guide.pdf` for Magician calibration and
-  software-based homing workflow.
+Recommended reading order:
 
-## Student Release Notes
+1. `GETTING_STARTED.md` for the shortest setup path.
+2. `docs/setup.md` for the setup checklist.
+3. `docs/student_api.md` for the shared helper API and environment variables.
+4. `docs/simulation.md` for simulator backend and asset-cache details.
+5. `docs/magician_setup.md` or `docs/mg400_setup.md` before hardware use.
+6. `docs/troubleshooting.md` when setup or runtime behavior looks wrong.
 
-- Third-party payloads in `vendor/` are included in this package.
-- First simulation runs may still take longer because assets are preprocessed
-  into cache.
-- If you publish a minimal checkout without vendor payload, run:
-  `python3 scripts/bootstrap.py --simulation` from package root.
+Each exercise folder also has its own `README.md` and `student_api.md` with the
+details for that exercise.
+
+## Notes
+
+- Simulation is the safest default and should be your first test path.
+- Real robots require exclusive access. Close any other robot-control software first.
+- First simulation startup may be slower because robot assets are prepared and cached.
+- If a minimal checkout does not include `vendor/`, run `python3 scripts/bootstrap.py --simulation`.
 
 ## Acknowledgements
 
 This teaching package builds on Dobot robot platforms, Dobot SDK resources,
-upstream robot description assets, and the Python robotics/simulation ecosystem
+upstream robot description assets, and the Python robotics/simulation ecosystem,
 including MuJoCo, PyBullet, NumPy, SciPy, Matplotlib, PyQt, and pyqtgraph.
 Thanks to the maintainers of these tools and resources.
