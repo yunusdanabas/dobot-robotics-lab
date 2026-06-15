@@ -45,6 +45,11 @@ def _pause_before_teardown(robot: U.RobotSession) -> None:
 
 
 def main() -> None:
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Lab 01 forward kinematics interface")
+    parser.parse_args()
+
     robot = U.setup()
     try:
         myCode.run(robot)
