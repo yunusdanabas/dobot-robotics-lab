@@ -4,7 +4,7 @@ jkaniuka/magician_ros2-derived meshes live under vendor/magician_ros2_urdf and
 assume the firmware "L home" posture at zero joints. Simulators ignore URDF
 mimic tags, so passive parallelogram joints are applied here:
 firmware_deg_to_visual_rad builds the revolute values (rad) that match the
-visible chain. See ME403_LabFiles/docs/simulation.md and repository notes for
+visible chain. See dobot-robotics-lab/docs/simulation.md and repository notes for
 full joint semantics.
 """
 

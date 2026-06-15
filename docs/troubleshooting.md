@@ -2,7 +2,7 @@
 
 ## Simulation says URDF is missing
 
-Run from `ME403_LabFiles/`:
+Run from `dobot-robotics-lab/`:
 
 ```bash
 python3 scripts/fetch_assets.py --all
@@ -11,9 +11,9 @@ python3 scripts/fetch_assets.py --all
 If it still fails:
 
 - Confirm `vendor/magician_ros2_urdf` and `vendor/mg400_description` exist.
-- If imports say the simulation runtime is missing, set  
-  `DOBOT_SIM_RUNTIME=/absolute/path/to/ME403_LabFiles/simulation/runtime`  
-  or run from an unmodified `ME403_LabFiles` tree so exercise `utils.py` can find `simulation/runtime` automatically.
+- If imports say the simulation runtime is missing, set
+  `DOBOT_SIM_RUNTIME=/absolute/path/to/dobot-robotics-lab/simulation/runtime`
+  or run from an unmodified `dobot-robotics-lab` tree so exercise `utils.py` can find `simulation/runtime` automatically.
 - Delete your simulation cache directory and retry:
   `DOBOT_SIM_CACHE` path if set, otherwise `~/.cache/dobot_sim`.
 
@@ -46,7 +46,7 @@ python3 scripts/fetch_assets.py --mg400-urdf
 - Set PC static IP to `192.168.2.100/24`.
 - Check Ethernet cable is plugged into controller `LAN2`.
 - Ping the robot IP.
-- Run `python3 scripts/check_mg400.py --robot 1` from `ME403_LabFiles/`.
+- Run `python3 scripts/check_mg400.py --robot 1` from `dobot-robotics-lab/`.
 
 ## Real robot pose differs from simulation by ~60 mm in X
 

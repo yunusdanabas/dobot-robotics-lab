@@ -7,7 +7,7 @@ DOBOT_SIM_BACKEND.
 End-effector URDF variants (none/motor/suction) follow DOBOT_EE or constructor
 arguments. Override URDF with DOBOT_MAGICIAN_URDF[_PATH]; otherwise loaders
 search vendor/magician_ros2_urdf/urdf/ near the package. Bootstrap and mesh setup:
-ME403_LabFiles/simulation/README.md and docs/simulation.md.
+dobot-robotics-lab/simulation/README.md and docs/simulation.md.
 """
 
 import contextlib
@@ -111,7 +111,7 @@ class _SimDobotBase:
     """Firmware-degree Magician pose state with pydobotplus-compatible methods.
 
     Tool mode none|motor|suction selects TCP offsets and URDF variant; see
-    kinematics.MAGICIAN_TOOL_OFFSET and ME403_LabFiles/docs/simulation.md.
+    kinematics.MAGICIAN_TOOL_OFFSET and dobot-robotics-lab/docs/simulation.md.
     """
 
     L1 = 135.0    # mm — upper arm (J2 pivot → elbow)

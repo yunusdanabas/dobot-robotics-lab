@@ -1,6 +1,6 @@
 # Windows Quick Start
 
-Use PowerShell or Windows Terminal from the `ME403_LabFiles` package root.
+Use PowerShell or Windows Terminal from the `dobot-robotics-lab` package root.
 
 ## 1. Setup
 
@@ -37,7 +37,7 @@ python scripts\bootstrap.py --mg400
 Default Magician simulation:
 
 ```powershell
-Push-Location labs\lab01_fk
+Push-Location labs\lab01_forward_kinematics
 python interface.py
 Pop-Location
 ```
@@ -45,7 +45,7 @@ Pop-Location
 MG400 simulation:
 
 ```powershell
-Push-Location labs\lab01_fk
+Push-Location labs\lab01_forward_kinematics
 $env:DOBOT_ROBOT_TYPE = "mg400"
 python interface.py
 Remove-Item Env:\DOBOT_ROBOT_TYPE
@@ -55,7 +55,7 @@ Pop-Location
 PyBullet instead of MuJoCo:
 
 ```powershell
-Push-Location labs\lab01_fk
+Push-Location labs\lab01_forward_kinematics
 $env:DOBOT_SIM_BACKEND = "pybullet"
 python interface.py
 Remove-Item Env:\DOBOT_SIM_BACKEND

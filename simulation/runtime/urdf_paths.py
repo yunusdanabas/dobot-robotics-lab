@@ -58,7 +58,7 @@ def resolve_magician_urdf_path(tool: str = "none") -> Path:
     expected = PACKAGE_ROOT / "vendor" / "magician_ros2_urdf"
     raise FileNotFoundError(
         "Magician URDF not found.\n"
-        "Set up assets from ME403_LabFiles root:\n"
+        "Set up assets from dobot-robotics-lab root:\n"
         "  python3 scripts/bootstrap.py --simulation\n"
         "or:\n"
         "  python3 scripts/fetch_assets.py --all\n\n"
@@ -88,7 +88,7 @@ def resolve_mg400_urdf_path() -> Path:
     expected = PACKAGE_ROOT / "vendor" / "mg400_description"
     raise FileNotFoundError(
         "MG400 URDF not found.\n"
-        "Set up assets from ME403_LabFiles root:\n"
+        "Set up assets from dobot-robotics-lab root:\n"
         "  python3 scripts/bootstrap.py --simulation\n"
         "or:\n"
         "  python3 scripts/fetch_assets.py --all\n\n"

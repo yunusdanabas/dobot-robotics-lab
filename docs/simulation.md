@@ -2,7 +2,7 @@
 
 Simulation is the recommended first step before using real hardware in teaching exercises.
 
-From the `ME403_LabFiles/` package root:
+From the `dobot-robotics-lab/` package root:
 
 ```bash
 python3 scripts/bootstrap.py --simulation

@@ -1,6 +1,6 @@
 """Magician URDF teleop with PyBullet (Tk panel or keyboard). No ROS.
 
-Run from ME403_LabFiles package root so terminal_keys resolves (see simulation/student/README).
+Run from dobot-robotics-lab package root so terminal_keys resolves (see simulation/student/README).
 Requires pybullet. Keymaps print from --help, H in keyboard mode, and the argparse epilog.
 """
 

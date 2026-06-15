@@ -2,7 +2,7 @@
 
 Single reference for bundled exercise helpers. Keep this open while editing `myCode.py`.
 
-**Canonical file:** `ME403_LabFiles/docs/student_api.md`. **Shortcuts:** some exercises ship a shorter `student_api.md` beside `myCode.py` (trimmed to that tree only).
+**Canonical file:** `dobot-robotics-lab/docs/student_api.md`. **Shortcuts:** some exercises ship a shorter `student_api.md` beside `myCode.py` (trimmed to that tree only).
 
 **Imports:** Run Python **inside** the exercise directory (for example under `labs/`) so `import utils as U` resolves. If you run from elsewhere, set `PYTHONPATH` to that directory or `cd` there first.
 
@@ -12,8 +12,8 @@ Single reference for bundled exercise helpers. Keep this open while editing `myC
 
 | Location | Robots | Session variable | Notes |
 |----------|--------|------------------|--------|
-| `labs/lab01_fk/utils.py` | Magician or MG400 | `robot` | Same unified API as Lab 2; Lab 1 MG400 uses joint home `(0,0,0,0)` in `setup()`/`teardown()`. |
-| `labs/lab02_jacobian_ik/utils.py` | Magician or MG400 | `robot` | Unified API; `move_joints`, `safe_move`, `configure`. |
+| `labs/lab01_forward_kinematics/utils.py` | Magician or MG400 | `robot` | Same unified API as Lab 2; Lab 1 MG400 uses joint home `(0,0,0,0)` in `setup()`/`teardown()`. |
+| `labs/lab02_jacobian_inverse_kinematics/utils.py` | Magician or MG400 | `robot` | Unified API; `move_joints`, `safe_move`, `configure`. |
 
 Always `import utils as U` from the same directory as that exercise’s `interface.py` / `myCode.py`.
 
@@ -67,7 +67,7 @@ Names refer to `U.*` after `import utils as U`.
 
 **Magician geometry:** upper arm `L1 = 135` mm, forearm `L2 = 147` mm. Home TCP at joint zero with tool `none`: **(147, 0, 135)** mm.
 
-**`Z_base` and lengths** come from **`ROBOT_MODELS`** in each unified `utils.py` (`labs/lab01_fk`, `labs/lab02_jacobian_ik`): Magician **Z_base = 103** mm (metadata / MG400-style consistency), **MG400** **Z_base = 116** mm, **L1 = L2 = 175** mm. In **Lab 1** `myCode.fk_predict`, the **Magician** branch does **not** add `Z_base` to *z* (shoulder firmware frame; home **(147, 0, 135)** mm at body `(0,0,0,0)` with tool `none`). The **MG400** branch **does** use `U.Z_base` in *z*. For Jacobians (Lab 2), follow **`lab2_guide.pdf`** and take numeric values only from **that** exercise’s `utils.py`.
+**`Z_base` and lengths** come from **`ROBOT_MODELS`** in each unified `utils.py` (`labs/lab01_forward_kinematics`, `labs/lab02_jacobian_inverse_kinematics`): Magician **Z_base = 103** mm (metadata / MG400-style consistency), **MG400** **Z_base = 116** mm, **L1 = L2 = 175** mm. In **Lab 1** `myCode.fk_predict`, the **Magician** branch does **not** add `Z_base` to *z* (shoulder firmware frame; home **(147, 0, 135)** mm at body `(0,0,0,0)` with tool `none`). The **MG400** branch **does** use `U.Z_base` in *z*. For Jacobians (Lab 2), follow **`lab2_guide.pdf`** and take numeric values only from **that** exercise’s `utils.py`.
 
 **Magician TCP presets** (same dict in both trees):
 

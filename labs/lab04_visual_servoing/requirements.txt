@@ -1,0 +1,8 @@
+# Lab 04 convenience install file.
+# From this folder, run: python -m pip install -r requirements.txt
+
+pydobotplus
+pyserial
+numpy
+scipy
+opencv-contrib-python>=4.7,<4.12

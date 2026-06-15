@@ -1,6 +1,6 @@
 """MG400 URDF teleop with MuJoCo (Tk or keyboard). No ROS.
 
-Run from ME403_LabFiles package root. Needs mujoco. Keys in --help, H, epilog.
+Run from dobot-robotics-lab package root. Needs mujoco. Keys in --help, H, epilog.
 """
 
 from __future__ import annotations

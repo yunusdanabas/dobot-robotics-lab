@@ -54,7 +54,7 @@ def main():
             print(f"  Current pose     : (unavailable — {exc})")
 
         print("\nConnectivity test PASSED. All sockets open, status readable.")
-        print("Next step: run 07_keyboard_teleop.py --robot 1, or use labs/lab01_fk/interface.py.")
+        print("Next step: run 07_keyboard_teleop.py --robot 1, or use labs/lab01_forward_kinematics/interface.py.")
 
     finally:
         close_all(dashboard, move_api, feed)

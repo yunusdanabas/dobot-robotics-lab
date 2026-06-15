@@ -2,7 +2,7 @@
 
 Use these files as small install profiles.
 
-Run these commands from the `ME403_LabFiles/` package root. Use `py -3` on
+Run these commands from the `dobot-robotics-lab/` package root. Use `py -3` on
 Windows if you are not inside an activated virtual environment.
 
 ```bash

@@ -23,7 +23,7 @@ Network reminder:
 
 For real MG400 use, run:
 
-From the `ME403_LabFiles/` package root:
+From the `dobot-robotics-lab/` package root:
 
 ```bash
 python3 scripts/fetch_assets.py --mg400-sdk

@@ -1,6 +1,6 @@
 """Magician URDF teleop with MuJoCo (Tk, keyboard, optional joystick). No ROS.
 
-Run from ME403_LabFiles package root. Needs mujoco. Full key and gamepad maps
+Run from dobot-robotics-lab package root. Needs mujoco. Full key and gamepad maps
 come from --help, H in keyboard mode, and argparse epilog.
 """
 

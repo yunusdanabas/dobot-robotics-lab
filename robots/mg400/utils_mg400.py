@@ -5,7 +5,7 @@ Typical imports: connect, clamp, safe_move, safe_rel_move, go_home, parse_pose,
 parse_angles, check_errors, start_feedback_thread, MG400_IP, READY_POSE, SAFE_BOUNDS,
 current_pose.
 
-Resolves dobot_api.py from mg400/ or ME403_LabFiles/vendor/TCP-IP-4Axis-Python.
+Resolves dobot_api.py from mg400/ or dobot-robotics-lab/vendor/TCP-IP-4Axis-Python.
 Network, robot IPs, joint ranges, and SDK fetch: see robots/mg400/README.md and package docs.
 """
 

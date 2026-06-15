@@ -1,6 +1,6 @@
 """MG400 URDF teleop with PyBullet (Tk or keyboard). No ROS.
 
-Run from ME403_LabFiles package root. Needs pybullet. Keys listed in --help,
+Run from dobot-robotics-lab package root. Needs pybullet. Keys listed in --help,
 H, and argparse epilog.
 """
 

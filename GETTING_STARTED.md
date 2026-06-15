@@ -10,7 +10,7 @@ Prerequisite: `git` and internet access are required to fetch simulation assets.
 ## 1. Install Python Packages
 
 ```bash
-cd ME403_LabFiles
+cd dobot-robotics-lab
 python3 -m pip install -r requirements/base.txt
 ```
 
@@ -26,7 +26,7 @@ This installs simulation packages and downloads upstream robot assets into
 ## 3. Run A Lab
 
 ```bash
-cd labs/lab01_fk
+cd labs/lab01_forward_kinematics
 python3 interface.py
 ```
 
@@ -62,7 +62,7 @@ DOBOT_SIMULATION=0 DOBOT_ROBOT_TYPE=mg400 DOBOT_MG400_ROBOT=1 python3 interface.
 
 ## 5. If Something Is Missing
 
-From `ME403_LabFiles/`, run:
+From `dobot-robotics-lab/`, run:
 
 ```bash
 python3 scripts/bootstrap.py --full

@@ -28,7 +28,7 @@ It exposes three TCP sockets that must all be connected:
 
 ## SDK Setup
 
-The MG400 Python SDK is not on PyPI. Download it from `ME403_LabFiles/`:
+The MG400 Python SDK is not on PyPI. Download it from `dobot-robotics-lab/`:
 
 ```bash
 python3 scripts/fetch_assets.py --mg400-sdk

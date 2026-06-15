@@ -235,7 +235,7 @@ def _ensure_simulation_path() -> Path:
                 sys.path.insert(0, str(candidate))
             return candidate
     raise ImportError(
-        "Full simulation runtime not found. From ME403_LabFiles/, run:\n"
+        "Full simulation runtime not found. From dobot-robotics-lab/, run:\n"
         "  python scripts/bootstrap.py --simulation\n"
         "Or set DOBOT_SIM_RUNTIME=/path/to/simulation/runtime."
     )

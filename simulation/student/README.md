@@ -4,7 +4,7 @@ These scripts are optional demos and teleops for simulation.
 
 Examples:
 
-From the `ME403_LabFiles/` package root:
+From the `dobot-robotics-lab/` package root:
 
 ```bash
 python3 simulation/student/magician_mujoco_teleop.py --help

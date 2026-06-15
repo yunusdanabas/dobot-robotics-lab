@@ -12,10 +12,10 @@ Use `python3` on Linux/macOS if `python` is not available. On Windows, use
 You need `git` installed with internet access for asset fetch during bootstrap.
 
 ```bash
-cd ME403_LabFiles
+cd dobot-robotics-lab
 python3 -m pip install -r requirements/base.txt
 python3 scripts/bootstrap.py --simulation
-cd labs/lab01_fk
+cd labs/lab01_forward_kinematics
 python3 interface.py
 ```
 

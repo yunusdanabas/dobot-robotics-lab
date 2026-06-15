@@ -2,7 +2,7 @@
 
 These tests help verify the simulation install.
 
-From `ME403_LabFiles/`:
+From `dobot-robotics-lab/`:
 
 ```bash
 DOBOT_VIZ=0 python3 simulation/tests/test_07_backend_crossval.py

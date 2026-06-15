@@ -7,7 +7,7 @@ Use this short checklist from the package root.
 Prerequisite: `git` and internet access are required for asset fetch.
 
 ```bash
-cd ME403_LabFiles
+cd dobot-robotics-lab
 python3 -m pip install -r requirements/base.txt
 python3 scripts/bootstrap.py --simulation
 ```
@@ -19,7 +19,7 @@ cd labs/<exercise_folder>
 python3 interface.py
 ```
 
-If you only received a PDF, download or clone `ME403_LabFiles` first from the
+If you only received a PDF, download or clone `dobot-robotics-lab` first from the
 course page or the link provided by your instructor.
 
 If you use a real Dobot Magician, calibrate/home first with DobotStudio

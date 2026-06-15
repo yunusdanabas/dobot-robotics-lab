@@ -22,7 +22,7 @@ sudo usermod -a -G dialout $USER
 # then log out and back in
 ```
 
-Check the port from `ME403_LabFiles/`:
+Check the port from `dobot-robotics-lab/`:
 
 ```bash
 python3 scripts/check_magician.py

@@ -4,7 +4,7 @@ Forward kinematics lab - **Dobot Magician or MG400**. Use with `myCode.py`; `int
 
 Full merged reference: [`../../docs/student_api.md`](../../docs/student_api.md).
 
-Run Python **from this folder** so `import utils as U` works (`cd labs/lab01_fk`).
+Run Python **from this folder** so `import utils as U` works (`cd labs/lab01_forward_kinematics`).
 
 MG400 **`setup()` / `teardown()`** move to **firmware joint home `(0,0,0,0)`** (`JointMovJ` + `Sync`) so Task 0 aligns with Magician-style joint home.
 

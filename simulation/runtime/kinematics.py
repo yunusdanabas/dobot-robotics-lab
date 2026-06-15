@@ -8,7 +8,7 @@ Magician joints match firmware/GetPose semantics (vertical-zero shoulder,
 horizontal-zero forearm in world axes; internal sim joints match hardware).
 
 For joint tables, tool offsets, citations, and conventions, see
-ME403_LabFiles/docs/simulation.md and AGENTS.md / CLAUDE.md in the repo root.
+dobot-robotics-lab/docs/simulation.md and AGENTS.md / CLAUDE.md in the repo root.
 
 Legacy PlanarArmKinematics plus fk_2r_planar/ik_2r_planar serve the MG400
 pedagogical model and workspace-boundary tests; Magician Cartesian math uses

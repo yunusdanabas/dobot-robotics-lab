@@ -1,4 +1,4 @@
-"""Validate a public ME403_LabFiles student package tree."""
+"""Validate a public dobot-robotics-lab student package tree."""
 
 from __future__ import annotations
 
@@ -27,14 +27,14 @@ REQUIRED_PATHS = (
     "scripts/check_install.py",
     "scripts/check_student_package.py",
     "labs/README.md",
-    "labs/lab01_fk/README.md",
-    "labs/lab01_fk/myCode.py",
-    "labs/lab01_fk/interface.py",
-    "labs/lab01_fk/utils.py",
-    "labs/lab02_jacobian_ik/README.md",
-    "labs/lab02_jacobian_ik/myCode.py",
-    "labs/lab02_jacobian_ik/interface.py",
-    "labs/lab02_jacobian_ik/utils.py",
+    "labs/lab01_forward_kinematics/README.md",
+    "labs/lab01_forward_kinematics/myCode.py",
+    "labs/lab01_forward_kinematics/interface.py",
+    "labs/lab01_forward_kinematics/utils.py",
+    "labs/lab02_jacobian_inverse_kinematics/README.md",
+    "labs/lab02_jacobian_inverse_kinematics/myCode.py",
+    "labs/lab02_jacobian_inverse_kinematics/interface.py",
+    "labs/lab02_jacobian_inverse_kinematics/utils.py",
     "robots/README.md",
     "robots/magician/README.md",
     "robots/mg400/README.md",
@@ -83,8 +83,8 @@ BANNED_TEXT = (
     "reference " + "solution",
     "solution " + "key with full " + "implementation",
     "full " + "implementation",
-    "lab01_fk" + BLANK_SUFFIX,
-    "lab02_jacobian_ik" + BLANK_SUFFIX,
+    "lab01_forward_kinematics" + BLANK_SUFFIX,
+    "lab02_jacobian_inverse_kinematics" + BLANK_SUFFIX,
 )
 
 
@@ -169,7 +169,7 @@ def validate(root: Path, *, allow_private: bool) -> list[str]:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Check that a ME403_LabFiles tree is safe for public student release.")
+    parser = argparse.ArgumentParser(description="Check that a dobot-robotics-lab tree is safe for public student release.")
     parser.add_argument("root", nargs="?", default=str(DEFAULT_ROOT), help="Package/export root to check")
     parser.add_argument(
         "--allow-instructor",

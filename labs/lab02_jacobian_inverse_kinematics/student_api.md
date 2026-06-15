@@ -4,7 +4,7 @@ Jacobian and IK lab - **Dobot Magician or MG400**. Use with `myCode.py`; `interf
 
 Full two-lab reference: [`../../docs/student_api.md`](../../docs/student_api.md).
 
-Run Python **from this folder** so `import utils as U` works (`cd labs/lab02_jacobian_ik`).
+Run Python **from this folder** so `import utils as U` works (`cd labs/lab02_jacobian_inverse_kinematics`).
 
 ---
 

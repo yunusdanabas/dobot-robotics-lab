@@ -16,7 +16,7 @@ Magician USB control uses **`pydobotplus`** from pip (`requirements/base.txt`
 plus the hardware profile when needed); no extra Magician vendor clone is
 required for the bundled lab scripts.
 
-Refresh or rebuild vendor content from the `ME403_LabFiles/` package root:
+Refresh or rebuild vendor content from the `dobot-robotics-lab/` package root:
 
 ```bash
 python3 scripts/fetch_assets.py --all

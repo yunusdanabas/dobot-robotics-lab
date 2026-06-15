@@ -25,9 +25,9 @@ When Magician sim-vs-real runs have a consistent baseline pose offset from
 frame/end-effector differences, use hybrid compare mode:
 
 ```bash
-python ME403_LabFiles/tools/debugging/robot_parity_diagnostic.py compare \
-  ME403_LabFiles/simulation/diagnostics/results/magician_sim.jsonl \
-  ME403_LabFiles/simulation/diagnostics/results/magician_real.jsonl \
+python dobot-robotics-lab/tools/debugging/robot_parity_diagnostic.py compare \
+  dobot-robotics-lab/simulation/diagnostics/results/magician_sim.jsonl \
+  dobot-robotics-lab/simulation/diagnostics/results/magician_real.jsonl \
   --magician-hybrid --anchor-case joint_zero --pos-tol 10 --joint-tol 5
 ```
 
